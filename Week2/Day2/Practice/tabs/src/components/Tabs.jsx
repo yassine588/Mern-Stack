@@ -17,5 +17,4 @@ const Tabs = (props) => {
     </div>
   )
 }
-
 export default Tabs
