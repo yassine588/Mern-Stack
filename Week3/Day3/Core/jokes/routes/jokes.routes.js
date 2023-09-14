@@ -1,8 +1,8 @@
 const jokescontroller=require("../controllers/jokes.controller")
 module.exports=(app)=>{
-app.get("/api/alljokes",jokescontroller.getallJokes)
-app.get("/api/onejokes/:id",jokescontroller.getjokebyid)
-app.post("/api/addjokes",jokescontroller.createjoke)
-app.put("/api/changejokes/:id",jokescontroller.updateJoke)
-app.delete("/api/deljokes/:id",jokescontroller.deleteJoke) 
+app.get("/api/jokes",jokescontroller.getallJokes)
+app.get("/api/jokes/:id",jokescontroller.getjokebyid)
+app.post("/api/jokes",jokescontroller.createjoke)
+app.put("/api/jokes/:id",jokescontroller.updateJoke)
+app.delete("/api/jokes/:id",jokescontroller.deleteJoke) 
 }

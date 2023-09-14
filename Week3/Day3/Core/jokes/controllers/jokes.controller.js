@@ -8,7 +8,7 @@ jokes.find()
 .catch(err=>{res.json({message:"wait a minute"})})
 }
 module.exports.getjokebyid=(req,res)=>{
-    jokes.find({_id:req.params.id})
+    jokes.findOne({_id:req.params.id})
     .then(
        onejoke=>{
         console.log(onejoke)
