@@ -2,11 +2,12 @@ const product=require("../models/product.model")
 module.exports.createproduct=(req,res)=>{
 product.create(req.body)
 .then(
-    newproduct=>{
-        res.json(newproduct)
+    myproduct=>{
+        console.log(myproduct)
+        res.json({myproduct})
     }
 )
-.catch(err=>{console.log("erreur 404")})
+.catch(err=>{console.log("erreur 404",err)})
 }
 module.exports.updateproduct=(req,res)=>{
     product.findByIdAndUpdate({_id:req.params.id},req.body)
@@ -35,4 +36,4 @@ module.exports.findproduct=(req,res)=>{
         res.json(myproduct)
     })
     .catch(err=>{console.log(err)})
-    }
+ }

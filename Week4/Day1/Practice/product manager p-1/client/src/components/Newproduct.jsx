@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 const Newproduct = () => {
-    const [Title,SetTitle]=useState("")
+    const [title,SetTitle]=useState("")
     const [price,Setprice]=useState(0)
     const [description,Setdescription]=useState("")
     const submitHandler=(e)=>{
      e.preventDefault()
-     axios.post("http://localhost:5000/api/product",{
-  Title,
-  price,
-  description
-     })
+     const sendobj={
+      title,
+      price,
+      Description:description
+     }
+     axios.post("http://localhost:5000/api/product",sendobj
+     )
      .then((res)=>{
-     console.log(res.data)
+     console.log(res.data.myproduct)
      SetTitle("")
      Setdescription("")
      Setprice(0)
@@ -25,7 +27,7 @@ const Newproduct = () => {
     <form onSubmit={submitHandler}>
     <div>
     <label>title</label>
-    <input type="text" name="title" value={Title} onChange={(e)=>{SetTitle(e.target.value)}}/>  
+    <input type="text" name="title"  onChange={(e)=>{SetTitle(e.target.value)} } value={title}/>  
     </div>
     <div>
     <label>price</label>
