@@ -4,36 +4,36 @@ product.create(req.body)
 .then(
     myproduct=>{
         console.log(myproduct)
-        res.json({myproduct})
+        res.status(200).json({myproduct})
     }
 )
-.catch(err=>{console.log("erreur 404",err)})
+.catch(err=>{res.status(404).json(err)})
 }
 module.exports.updateproduct=(req,res)=>{
     product.findByIdAndUpdate({_id:req.params.id},req.body)
     .then(newupdate=>{
-        res.json(newupdate)
+        res.status(200).json(newupdate)
     })
-    .catch(err=>{console.log("wait a minute")})
+    .catch(err=>{res.status(404).json(err)})
 }
 module.exports.deleteproduct=(req,res)=>{
 product.findByIdAndDelete({_id:req.params.id})
 .then(delproduct=>{
-    res.json(delproduct)
+    res.status(200).json(delproduct)
 })
-.catch(err=>{console.log(err)})
+.catch(err=>{res.status(404).json(err)})
 }
 module.exports.findAllproduct=(req,res)=>{
 product.find()
 .then(allproduct=>{
-    res.json(allproduct)
+    res.status(200).json(allproduct)
 })
-.catch(err=>{console.log(err)})
+.catch(err=>{res.status(404).json(err)})
 }
 module.exports.findproduct=(req,res)=>{
     product.findOne({_id:req.params.id})
     .then(myproduct=>{
-        res.json(myproduct)
+        res.status(200).json(myproduct)
     })
-    .catch(err=>{console.log(err)})
+    .catch(err=>{res.status(404).json(err)})
  }

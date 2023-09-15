@@ -8,7 +8,7 @@ price:{
     type:Number,
     required:[ true, "the number is required"]
 },
-Description:{
+description:{
     type:String,
     required:[ true, "the Description is required"]
 }
