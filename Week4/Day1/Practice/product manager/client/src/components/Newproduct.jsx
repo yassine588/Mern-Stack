@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 const Newproduct = () => {
     const [title,SetTitle]=useState("")
@@ -8,6 +8,7 @@ const Newproduct = () => {
     const [products,Setproducts]=useState([])
     const [refrechState,SetrefrechState]=useState(false)
     const [errors, setErrors] = useState([]);
+    const navigate=useNavigate()
     useEffect(() => {
       axios.get('http://localhost:5000/api/product')
         .then((res) => {
@@ -51,6 +52,14 @@ const Newproduct = () => {
       setErrors(errorArr);
   })
     }
+    const Deleteproduct=(prodid)=>{
+  axios.delete(`http://localhost:5000/api/product/${prodid}`)
+  .then((res)=>{
+    const newList = products.filter((product, index) => product._id !== prodid)
+    Setproducts(newList);
+    navigate("/")
+  })
+    }
   return (
     <div>
       {errors.map((err, index) => <p key={index}>{err}</p>)}
@@ -73,9 +82,13 @@ const Newproduct = () => {
     <h1>Allproducts:</h1>
     {
      products.map((myproduct,index)=>{
-      return( <Link to={`oneproduct/${myproduct._id}`} key={index}>
+      return(<div>
+        <Link to={`oneproduct/${myproduct._id}`} key={index}>
       <p>{myproduct.title}</p>  
      </Link>
+     <button onClick={()=>{Deleteproduct(myproduct._id)}}>Delete</button>
+     <Link to={`Edit/${myproduct._id}`}>Edit</Link>
+     </div>
      )
     })
     }
