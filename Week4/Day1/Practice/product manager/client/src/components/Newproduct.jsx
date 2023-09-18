@@ -21,7 +21,6 @@ const Newproduct = () => {
           for (const key of Object.keys(errorResponse)) { 
               errorArr.push(errorResponse[key].message)
           }
-          // Set Errors
           setErrors(errorArr);
       })
     }, [refrechState]);
